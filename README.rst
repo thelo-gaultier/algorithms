@@ -13,7 +13,9 @@ algorithms
         :alt: Documentation Status
 
 
-little project to practise python and the algorithms theory
+Simple project to practice python and the algorithms theory
+
+This project does not aimed to do better implementation of the standard Python library, it is just a way for me to reviews  algorithms.
 
 * Free software: ISC license
 * Documentation: https://algorithms.readthedocs.org.
