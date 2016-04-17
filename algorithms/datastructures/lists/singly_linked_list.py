@@ -48,16 +48,6 @@ class SinglyLinkedList:
             p.pointers['next'] = c.pointers['next']
         return True
 
-    def display(self):
-        tmp = self.head
-        list_str = []
-        while tmp is not None:
-            list_str.append(str(tmp.key))
-            tmp = tmp.pointers['next']
-        list_str.append("None")
-        s = ' -> '.join(list_str)
-        print s
-
     def reverse_non_recursive(self):
         """Reverse a list using a non recursive method.
            Besides the method takes no extra memory
@@ -85,3 +75,15 @@ class SinglyLinkedList:
             tail = self._reverse_recursive(c, c.pointers['next'])
             c.pointers['next'] = p
             return tail
+
+    """
+    def display(self):
+        tmp = self.head
+        list_str = []
+        while tmp is not None:
+            list_str.append(str(tmp.key))
+            tmp = tmp.pointers['next']
+        list_str.append("None")
+        s = ' -> '.join(list_str)
+        print s
+    """

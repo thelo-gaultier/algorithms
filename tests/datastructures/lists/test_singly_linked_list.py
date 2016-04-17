@@ -12,14 +12,14 @@ class TestSinglyLinkedList(unittest.TestCase):
 
     def test_add_delete_element(self):
         l = SinglyLinkedList()
-        for i in range(1, 100):
+        for i in xrange(1, 100):
             l.add(Node(i))
 
-        for i in range(100, 1):
+        for i in xrange(1, 100):
             n = l.search(i)
             self.assertIsNotNone(n, "Node should not be None.")
 
-        for i in range(100, 1):
+        for i in xrange(1, 100):
             n = l.search(i)
             self.assertTrue(l.delete(n), "Could not delete an existing node.")
 
