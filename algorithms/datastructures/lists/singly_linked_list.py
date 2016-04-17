@@ -85,34 +85,3 @@ class SinglyLinkedList:
             tail = self._reverse_recursive(c, c.pointers['next'])
             c.pointers['next'] = p
             return tail
-
-
-def main():
-    l = SinglyLinkedList()
-
-    l.add(node.Node(4))
-    l.add(node.Node(3))
-    l.add(node.Node(2))
-    l.add(node.Node(1))
-
-    l.display()
-    l.reverse_recursive()
-    l.display()
-    l.reverse_non_recursive()
-
-    l.display()
-    elt = l.search(2)
-    l.delete(elt)
-    l.display()
-    elt = l.search(4)
-    l.delete(elt)
-    l.display()
-    elt = l.search(1)
-    l.delete(elt)
-    l.display()
-    elt = l.search(3)
-    l.delete(elt)
-    l.display()
-
-if __name__ == '__main__':
-    main()
