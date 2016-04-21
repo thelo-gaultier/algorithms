@@ -101,3 +101,68 @@ class BinaryTree:
             z = p
             p = p.pointers['parent']
         return p
+
+    def delete(self, n):
+        if n is None:
+            return None
+        y = None
+        if (n.pointers['left'] is None or n.pointers['right'] is None):
+            y = n
+        else:
+            y = self.successor(n)
+
+        x = None
+        if y.pointers['left'] is not None:
+            x = y.pointers['left']
+        else:
+            x = y.pointers['right']
+
+        p = None
+        if y is not None:
+            p = y.pointers['parent']
+
+        if p is None:
+            self.root = x
+            x.pointers['parent'] = None
+        else:
+            if p.pointers['left'] is y:
+                p.pointers['left'] = x
+            else:
+                p.pointers['right'] = x
+
+        if (n.pointers['left'] is not None and
+           n.pointers['right'] is not None):
+            # We should exchange y and n,
+            # We could simply exchange values
+            # but if someone maintains a reference to the successor
+            # we will corrupt it
+            print "Replace %s , %s" % (y.key, n.key)
+            y = self._replace(y, n)
+
+        return y
+
+    def _replace(self, src, dst):
+        src_pointers = src.pointers
+        src.pointers = dst.pointers
+        dst.pointers = src_pointers
+
+        # Replace references in other nodes
+        left = src.pointers['left']
+        if left is not None:
+            left.pointers['parent'] = src
+
+        right = src.pointers['right']
+        if right is not None:
+            right.pointers['parent'] = src
+
+        parent = src.pointers['parent']
+        if parent is not None:
+            if parent.pointers['left'] is dst:
+                parent.pointers['left'] = src
+            else:
+                parent.pointers['right'] = src
+
+        # Special case for the root
+        if self.root is dst:
+            self.root = src
+        return dst

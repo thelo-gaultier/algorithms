@@ -3,6 +3,7 @@ Created on Apr 18, 2016
 
 @author: Thelo
 '''
+import random
 import unittest
 from algorithms.datastructures.trees import binary_tree
 from algorithms.datastructures import node
@@ -130,6 +131,65 @@ class TestBinaryTree(unittest.TestCase):
         # if the value cannot be found
         v = self.t.search(-1)
         self.assertIsNone(v, "Value : %s should not be in the tree" % v)
+
+    def print_node(self, c, params):
+        print c.key
+
+    def test_delete(self):
+        t = binary_tree.BinaryTree()
+        values = [15, 5, 16, 12, 20, 3, 10, 13, 18, 23, 2, 6, 7]
+        for v in values:
+            t.insert(node.Node(v))
+
+        # Delete a node with no child
+        n = t.search(13)
+        n_deleted = t.delete(n)
+        self.assertEquals(n, n_deleted)
+        self.assertIsNotNone(n, "Node should be in the tree")
+        n = t.search(13)
+        self.assertIsNone(n, "Node should not be in the tree")
+        values.remove(13)
+
+        # Delete a node with a single child
+        n = t.search(16)
+        n_deleted = t.delete(n)
+        self.assertEquals(n, n_deleted)
+        self.assertIsNotNone(n, "Node should be in the tree")
+        n = t.search(16)
+        self.assertIsNone(n, "Node should not be in the tree")
+        values.remove(16)
+
+        # Delete a node with two children
+        n = t.search(5)
+        n_deleted = t.delete(n)
+        self.assertEquals(n, n_deleted)
+        self.assertIsNotNone(n, "Node should be in the tree")
+        n = t.search(5)
+
+        self.assertIsNone(n, "Node should not be in the tree")
+        values.remove(5)
+
+        # Delete the root
+        n = t.search(15)
+        n_deleted = t.delete(n)
+        self.assertEquals(n, n_deleted)
+        self.assertIsNotNone(n, "Node should be in the tree")
+        n = t.search(15)
+        self.assertIsNone(n, "Node should not be in the tree")
+        values.remove(15)
+
+        # Random delete all the remaining nodes.
+        # Delete the root until the tree is empty
+        while not values:
+            id = random.randint(0, values.size-1)
+            key = values[id]
+            n = t.search(key)
+            n_deleted = t.delete(n)
+            self.assertEquals(n, n_deleted)
+            self.assertIsNotNone(n, "Node %s should be in the tree" % key)
+            n = t.search(key)
+            self.assertIsNone(n, "Node %s should not be in the tree" % key)
+            values.remove(key)
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.test_insert']
