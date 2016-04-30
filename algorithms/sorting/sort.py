@@ -4,6 +4,7 @@ Created on Apr 24, 2016
 @author: Thelo
 '''
 
+from algorithms.sorting import mergesort
 from algorithms.sorting import quicksort
 
 
@@ -22,5 +23,7 @@ class Sorter(object):
             return quicksort.QuickSort("hoare")
         elif "quicksort_lomuto":
             return quicksort.QuickSort("lomuto")
+        elif "mergesort":
+            return mergesort.MergeSort()
         else:
             return None

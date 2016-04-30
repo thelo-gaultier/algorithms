@@ -4,12 +4,13 @@ Created on Apr 23, 2016
 @author: Thelo
 '''
 import copy
-import random
 import unittest
+
 from algorithms.sorting import sort
+from tests.sorting import test_sort
 
 
-class TestQuickSort(unittest.TestCase):
+class TestQuickSort(test_sort.TestSorting):
 
     def test_quicksort_basic(self):
         """Test basic and corner cases."""
@@ -52,26 +53,9 @@ class TestQuickSort(unittest.TestCase):
         sorter_hoare = sort.Sorter.create("hoare")
         sorter_lomuto = sort.Sorter.create("lomuto")
 
-        self._test_quicksort_random(sorter_hoare)
-        self._test_quicksort_random(sorter_lomuto)
+        self._test_sort_random(sorter_hoare)
+        self._test_sort_random(sorter_lomuto)
 
-    def _test_quicksort_random(self, sort_method):
-        for i in xrange(1, 50):
-            # init an array
-            random_array = []
-            # generate i random number
-            for i in xrange(1, 50):
-                r = random.randint(1, 1000)
-                random_array.append(r)
-
-            random_array_copy = copy.deepcopy(random_array)
-            random_array_copy.sort()
-            sort_method.sort(random_array)
-            msg = ("%s and %s should be equal"
-                   % (random_array, random_array_copy))
-            self.assertEquals(random_array,
-                              random_array_copy,
-                              msg)
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.testName']

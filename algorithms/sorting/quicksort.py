@@ -5,7 +5,7 @@ Created on Apr 23, 2016
 '''
 
 
-class QuickSort:
+class QuickSort(object):
 
     def __init__(self, partition):
         """Empty doc string."""
@@ -18,9 +18,9 @@ class QuickSort:
             self.partition = self._hoare_partition
 
     def sort(self, array_to_sort):
-        self._quicksort(array_to_sort,
-                        0,
-                        len(array_to_sort)-1)
+        array_to_sort = self._quicksort(array_to_sort,
+                                        0,
+                                        len(array_to_sort)-1)
 
     def _quicksort(self, array_to_sort, p, q):
         if p < q:
